@@ -5,6 +5,8 @@ const express = require('express');
 const connectDB = require('./config/databaseConfig');
 const morgan = require('morgan');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const errorMiddleware = require('./middlewares/errorMiddleware');
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
@@ -26,7 +28,7 @@ if (NODE_ENV === 'development') {
 
 // Body parsers
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // ================= ROUTES =================
 
@@ -54,16 +56,7 @@ app.use((req, res, next) => {
 
 // ================= GLOBAL ERROR HANDLER =================
 
-app.use((err, _, res, next) => {
-  const statusCode = err.statusCode || err.status || 500;
-
-  console.error('🔥 Server Error:', err);
-
-  res.status(statusCode).json({
-    success: false,
-    message: err.message || 'Internal Server Error',
-  });
-});
+app.use(errorMiddleware);
 
 // ================= SERVER START =================
 
