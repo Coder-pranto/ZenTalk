@@ -13,4 +13,10 @@ const generateTokenAndSetCookie = (userId, res) => {
   });
 };
 
-module.exports = {  generateTokenAndSetCookie };
+
+const verifyToken = (token) => {
+  return jwt.verify(token, process.env.JWT_SECRET);
+};
+
+
+module.exports = {  generateTokenAndSetCookie, verifyToken };

@@ -8,6 +8,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const authRoutes = require('./routes/authRoutes');
+const messageRoutes = require('./routes/messageRoute');
+
 
 const app = express();
 
@@ -43,6 +45,7 @@ app.get('/', (_, res) => {
 
 // API routes
 app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
 
 // ================= 404 HANDLER =================

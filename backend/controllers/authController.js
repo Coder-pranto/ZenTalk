@@ -39,6 +39,7 @@ const signup = async (req, res) => {
   generateTokenAndSetCookie(newUser._id, res);
 
   res.status(201).json({
+    success: true,
     _id: newUser._id,
     fullName: newUser.fullName,
     username: newUser.username,
@@ -68,6 +69,7 @@ const login = async (req, res) => {
   generateTokenAndSetCookie(user._id, res);
 
   res.status(200).json({
+    success: true,
     _id: user._id,
     fullName: user.fullName,
     username: user.username,
@@ -87,6 +89,7 @@ const logout = (req, res) => {
   });
 
   return res.status(200).json({
+    success: true,
     message: 'Logged out successfully',
   });
 };
