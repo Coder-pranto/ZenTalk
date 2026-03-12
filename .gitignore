@@ -140,3 +140,4 @@ vite.config.ts.timestamp-*
 /senior dev.md
 /test.js
 /backend/controllers/test.js
+/.gitignore
