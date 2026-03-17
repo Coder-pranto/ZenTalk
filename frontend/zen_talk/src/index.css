@@ -4,5 +4,6 @@
 
 body {
     @apply bg-cover bg-center;
-    background-image: url('./assets/bg.jpg');
+    /* background-image: url('./assets/bg.jpg'); */
+    background-image: url('./assets/bg22.png');
 }
