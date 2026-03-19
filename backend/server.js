@@ -4,7 +4,6 @@ require('colors');
 const express = require('express');
 const connectDB = require('./config/databaseConfig');
 const morgan = require('morgan');
-const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const authRoutes = require('./routes/authRoutes');
@@ -19,9 +18,6 @@ const URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/zen-talk';
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // ================= MIDDLEWARE =================
-
-// CORS
-app.use(cors());
 
 // Logging
 if (NODE_ENV === 'development') {
