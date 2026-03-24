@@ -11,3 +11,5 @@ export default defineConfig({
     },
   },
 });
+
+//! if u use proxy then u dont need to use cors in backend.
