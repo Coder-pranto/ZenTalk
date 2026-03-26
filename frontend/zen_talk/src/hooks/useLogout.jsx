@@ -20,10 +20,10 @@ const useLogout = () => {
     } catch (error) {
       console.log('Logout error:', error);
 
-      const message =
+      const messageErr =
         error.response?.data?.message || error.message || 'Logout failed';
 
-      toast.error(message);
+      toast.error(messageErr);
     } finally {
       setLoading(false);
     }

@@ -13,8 +13,8 @@ const useGetConversations = () => {
         const { data: users } = await axios.get('/api/users');
         setConversations(users.data);
       } catch (error) {
-        const message = error?.response?.data?.error || error.message ||'Failed to fetch conversations';
-        toast.error(message);
+        const messageErr = error?.response?.data?.message || error.message ||'Failed to fetch conversations';
+        toast.error(messageErr);
       } finally {
         setLoading(false);
       }

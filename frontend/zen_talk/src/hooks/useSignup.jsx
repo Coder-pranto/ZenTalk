@@ -53,8 +53,11 @@ const useSignup = () => {
         setAuthUser(userData);
         toast.success('Signup successful! Welcome to ZenTalk!');
       } catch (error) {
-        const message = error.response?.data?.message||error.message||'Something went wrong';
-        toast.error(message);
+        const messageErr =
+          error.response?.data?.message ||
+          error.message ||
+          'Something went wrong';
+        toast.error(messageErr);
       } finally {
         setLoading(false);
       }

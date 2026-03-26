@@ -30,8 +30,8 @@ const useLogin = () => {
       toast.success('Login successful ✅');
     } catch (error) {
       // axios error handling
-      const message = error?.response?.data?.message || error.message || 'Login failed';
-      toast.error(message);
+      const messageErr = error?.response?.data?.message || error.message || 'Login failed';
+      toast.error(messageErr);
     } finally {
       setLoading(false);
     }
