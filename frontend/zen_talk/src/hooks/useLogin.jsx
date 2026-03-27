@@ -22,10 +22,13 @@ const useLogin = () => {
 
     setLoading(true);
     try {
-      const data = await axios.post('/api/auth/login', {username,password});
+      const { data: userData } = await axios.post('/api/auth/login', {
+        username,
+        password,
+      });
         
-      localStorage.setItem('chat-user', JSON.stringify(data));
-      setAuthUser(data);
+      localStorage.setItem('chat-user', JSON.stringify(userData));
+      setAuthUser(userData);
 
       toast.success('Login successful ✅');
     } catch (error) {

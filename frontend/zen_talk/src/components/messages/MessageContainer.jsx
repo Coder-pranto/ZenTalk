@@ -39,7 +39,7 @@ export default MessageContainer;
 
 const NoChatSelected = () => {
   const { authUser } = useAuthContext();
-  const currentUserName = authUser ? authUser.data.fullName : 'Guest';
+  const currentUserName = authUser ? authUser?.fullName : 'Guest';
   return (
     <div className='flex items-center justify-center w-full h-full'>
       <div className='text-center text-white flex flex-col items-center gap-3 opacity-80'>

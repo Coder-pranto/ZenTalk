@@ -9,8 +9,7 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 const authRoutes = require('./routes/authRoutes');
 const messageRoutes = require('./routes/messageRoute');
 const userRoutes = require('./routes/userRoutes');
-
-const app = express();
+const { app, server} = require('./socket/socketConfig');
 
 // Environment Variables
 const PORT = process.env.PORT || 5000;
@@ -62,7 +61,7 @@ app.use(errorMiddleware);
 (async () => {
   try {
     await connectDB(URI);
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log(`> Server is up and running on: http://localhost:${PORT}`.green.bgWhite.underline.red.bold);
         
     });

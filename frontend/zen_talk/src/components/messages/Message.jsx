@@ -3,17 +3,16 @@ import { extractTime } from '../../utils/extractTime';
 import useConversation from '../../zustand/useConversation';
 
 const Message = ({ message }) => {
-  // const { data: user } = useAuthContext().authUser;
-  const { authUser: { data: user } = {} } = useAuthContext();
+  const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
-  const fromMe = message?.senderId === user._id;
+  const fromMe = message?.senderId === authUser._id;
   const formattedTime = extractTime(message.createdAt);
   const chatClassName = fromMe ? 'chat-end' : 'chat-start';
   const profilePic = fromMe
-    ? user.profilePic
+    ? authUser.profilePic
     : selectedConversation?.profilePic;
   const bubbleBgColor = fromMe ? 'chat-bubble-info' : 'chat-bubble-accent';
-  // const bubbleBgColor = fromMe ? "bg-blue-400" : "bg-gray-300";
+
 
   return (
     <div className={`chat ${chatClassName}`}>

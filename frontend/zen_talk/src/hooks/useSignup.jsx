@@ -47,7 +47,7 @@ const useSignup = () => {
           gender,
         });
           
-          console.log(userData);
+          console.log("new user registerd",userData);
 
         localStorage.setItem('chat-user', JSON.stringify(userData));
         setAuthUser(userData);
