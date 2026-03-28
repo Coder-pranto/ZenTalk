@@ -7,10 +7,13 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-    cors: {
-        origin: ['https://localhost:3001'],
-        methods: ['GET', 'POST']
-    },
+  cors: {
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? 'https://zentalk-3xh6.onrender.com'
+        : 'http://localhost:3001',
+    methods: ['GET', 'POST'],
+  },
 });
 
 const userSocketMap = {}; // {userId: socketId}
