@@ -1,16 +1,14 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import './index.css';
-import App from './App.jsx';
+import { router } from './routes/router.jsx';
 import { AuthContextProvider } from './context/AuthProvider.jsx';
 import { SocketContextProvider } from './context/SocketProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <AuthContextProvider>
-      <SocketContextProvider >
-        <App />
-      </SocketContextProvider>
-    </AuthContextProvider>
-  </BrowserRouter>,
+  <AuthContextProvider>
+    <SocketContextProvider>
+      <RouterProvider router={router} />
+    </SocketContextProvider>
+  </AuthContextProvider>,
 );

@@ -25,7 +25,7 @@ const Login = () => {
       <div className='w-full max-w-md p-6 rounded-lg shadow-md bg-white/10 backdrop-blur-lg border border-white/20'>
         <h1 className='text-3xl font-semibold text-center text-white'>
           Login
-          <span className='text-blue-500'> ChatApp</span>
+          <span className='text-blue-500'> ZenTalk</span>
         </h1>
 
         <form className='mt-4' onSubmit={handleSubmit}>

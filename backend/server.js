@@ -2,6 +2,7 @@ require('dotenv').config({ quiet: true });
 require('colors');
 
 const express = require('express');
+const path = require('path');
 const connectDB = require('./config/databaseConfig');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -12,7 +13,7 @@ const userRoutes = require('./routes/userRoutes');
 const { app, server} = require('./socket/socketConfig');
 
 // Environment Variables
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 const URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/zen-talk';
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -29,19 +30,20 @@ app.use(cookieParser());
 
 // ================= ROUTES =================
 
-// Health check route
-app.get('/', (_, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'ZenTalk API is running 🚀',
-  });
-});
-
-
 // API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use('/api/users', userRoutes);
+
+// ================= PRODUCTION SETUP =================
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/zen_talk/dist'))); 
+
+  app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/zen_talk/dist/index.html')); 
+  });
+}
 
 // ================= 404 HANDLER =================
 
@@ -62,7 +64,7 @@ app.use(errorMiddleware);
   try {
     await connectDB(URI);
     server.listen(PORT, () => {
-        console.log(`> Server is up and running on: http://localhost:${PORT}`.green.bgWhite.underline.red.bold);
+        console.log(`> Server is up and running on port :${PORT}`.green.bgWhite.underline.red.bold);
         
     });
   } catch (error) {
