@@ -13,7 +13,7 @@ export const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     if (!authUser) return;
 
-    socketRef.current = io('http://localhost:5001', {
+    socketRef.current = io('https://zentalk-3xh6.onrender.com', {
       query: {
         userId: authUser._id,
       },
